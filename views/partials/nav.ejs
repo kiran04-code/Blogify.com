@@ -1,0 +1,130 @@
+<style>
+ a{
+  font-family: poppins Medium;
+ }   /* Custom Bootstrap Navbar Styling */
+ .navbar {
+    background: linear-gradient(135deg, #ff5f6d, #ffc371); /* Warm gradient */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Stronger bottom shadow */
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-family: futura;
+    font-size: 26px;
+    font-weight: bold;
+    color: white !important;
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 18px;
+    color: white !important;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffe5b4 !important;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+.dropdown-menu {
+    background: #ff5f6d;
+    border-radius: 8px;
+    border: none;
+}
+
+.dropdown-item {
+    color: white !important;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+.form-control {
+    border-radius: 9px;
+    border: 2px solid white;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-outline-success {
+    border-color: white;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-success:hover {
+    background-color: white;
+    color: #ff5f6d;
+}
+
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h3>Blogify</h3></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <% if (locals.user) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="/history">History</a>
+              </li>
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle"  href="/add-new">Add Blog</a>
+          </li>
+           
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Kiran rathod
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              <li><hr class="dropdown-divider"></li>
+            </ul>
+          </li>
+            <% } else{%> 
+              <a class="nav-link" href="/signup">Create Account </a>
+              <a class="nav-link" href="/signin">Sign In</a>
+               <%} %>
+          <li class="nav-item">
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+ 
+  

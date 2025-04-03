@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+       
+
+        footer {
+            background: linear-gradient(135deg, #ff5f6d, #ffc371); 
+            color: #d1d1d1;
+            padding: 40px 10%;
+            font-size: 14px;
+            border-top: 5px solid black;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h3 {
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #000000;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 6px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #000000;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            margin-top: 20px;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: #000000;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .language-selector {
+            background: #2c353d;
+            border: none;
+            color: white;
+            padding: 6px 10px;
+            font-size: 13px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>Help</h3>
+            <a href="#">Help Center</a>
+            <a href="#">Help Forum</a>
+            <a href="#">Video Tutorials</a>
+        </div>
+        <div class="footer-column">
+            <h3>Community</h3>
+            <a href="#">Blogger Buzz</a>
+        </div>
+        <div class="footer-column">
+            <h3>Developers</h3>
+            <a href="#">Blogger API</a>
+            <a href="#">Developer Forum</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>
+            <a href="#">Terms of Service</a> |
+            <a href="#">Privacy</a> |
+            <a href="#">Content Policy</a>
+        </div>
+        <select class="language-selector">
+            <option>English</option>
+            <option>Español</option>
+            <option>Français</option>
+            <option>Deutsch</option>
+        </select>
+    </div>
+</footer>
+
+</body>
+</html>

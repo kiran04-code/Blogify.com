@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <title><%= blog.title %></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff5f6d,#ffc371, rgb(235, 91, 91) ); /* Matching navbar */
+            color: #fff;
+            
+        }
+        .blog-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 95%;
+            background-color: rgb(0, 0, 0);
+             margin-top: 50px;
+            margin-left: 30px;
+            padding: 70px 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        .content {
+            flex: 1;
+            max-width: 50%;
+        }
+        .content h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-family: futura;
+            color: transparent;
+            background: linear-gradient(135deg, #ff5f6d,#ffc371, rgb(235, 91, 91) ); /* Matching navbar */
+            -webkit-background-clip: text;
+        }
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .image-container {
+            flex: 1;
+            position: relative;
+            max-width: 50%;
+            text-align: right;
+        }
+        .image-container img {
+            width: 95%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        #button1{
+            padding: 8px;
+            border-radius: 10px;
+            border: none;
+            color: rgb(0, 0, 0);
+            margin-top: 10px;
+            font-family: poppins Medium;
+            background: linear-gradient(135deg, #ff5f6d,#ffc371, rgb(235, 91, 91) ); /* Matching navbar */
+        }
+        @media (max-width: 768px) {
+            .blog-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .content, .image-container {
+                max-width: 100%;
+            }
+            .image-container {
+                text-align: center;
+            }
+        }
+        .WhoisUser {
+            margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    width: 180px;
+    float: inline-end;
+    margin-left: 10px;
+    font-family: 'Brondb Fuve', sans-serif; /* Custom font */
+}
+.img{
+    height: 100%;
+    width: 25%;
+    background-color: blue;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.profile-name{
+    font-family: Teachers;
+}
+
+.comment-box {
+    width: 90%;
+    max-width: 400px;
+    /* margin: 20px auto; */
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid #fe7070;
+    background-color: #ff6f6f;
+}
+#button2{
+    border: none;
+    border-radius: 10px;
+}
+.comment-box h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+    height: 80px;
+}
+
+#post-comment-btn {
+    background: none;
+    border: 1px solid #000;
+    padding: 5px;
+    cursor: pointer;
+    width: 100px;
+    margin: auto;
+    display: block;
+}
+ h3{
+    font-family: futura;
+ }
+ 
+ .comment-dropdown {
+    width: 300px;
+    color: white;
+    font-family: poppins Medium;
+    text-align: center;
+    
+}
+.comment-dropdown button{
+    color: #fbf9f9;
+    margin-top: 10px;
+   border: 2px solid red;
+}
+#toggle-comments {
+    background: none;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    background-color: #fe7070;
+    border-radius: 20px;
+    cursor: pointer;
+  
+    width: 100%;
+}
+
+.comment-list {
+    display: none; /* Hidden by default */
+    border: 1px solid #000;
+    /* background: #ad7676; */
+    gap: 10px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.comment-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    background-color: rgb(255, 116, 116);
+    padding: 5px;
+    font-size: 8px;
+    border-bottom: 1px solid #d50f0f;
+}
+.comment-item  p{
+   font-size: 10px;
+   display: flex;
+   align-items: center;
+}
+
+.comment-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.comment-name {
+    font-weight: bold;
+    font-size: 10px;
+    color: black;
+    font-family: Teachers;
+    white-space: nowrap;
+}
+
+    </style>
+</head>
+<body>
+    <%- include('partials/nav') %>  
+    <div class="blog-container">
+        <div class="content">
+            <h1><%= blog.title %></h1>
+            <p><%= blog.body %></p>
+            <% if (locals.user) { %>
+                <div class="comment-box">
+                    <h3 style="color: black;">Leave a Comment!</h3>
+                    <form class="comment-form" action="/blog/comment/<%= blog._id %>" method="post" >
+                        <textarea style="border: none; border-radius:8px;" name="content" class="comment-input" placeholder="Write your comment..." required></textarea>
+                        <button id="button2"  type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+                <% } %>
+                <div class="comment-dropdown">
+                    <button id="toggle-comments">View Comments (<%=comment.length  %>) ▼</button>
+                    <div class="comment-list">
+                        <% comment.forEach(element => { %>
+                        <div class="comment-item">
+                            <img class="comment-img" src="<%=element.createdBy.profileImageUrl%>" alt="User">
+                            <span class="comment-name"><%=element.createdBy.fullName%></span>
+                            <p class="comment-text"><%=element.content  %></p>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+        </div>
+        <div class="image-container">
+            <img src="<%= blog.converImageIUrl %>" alt="<%= blog.title %>">
+          <div class="WhoisUser">
+            <div class="img"><img class="profile-img" src="<%= blog.createdBy.profileImageUrl %>" alt="Profile Image"> </div>
+            <span class="profile-name"><%= blog.createdBy.fullName %></span>
+        </div>
+        <a href="/">  <button id="button1">Back To Blogs</button></a>
+        </div>
+   
+    </div>
+    <%- include('partials/footer') %>
+    <%- include('partials/script') %>
+    
+</body>
+</html>
