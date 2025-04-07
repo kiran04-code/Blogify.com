@@ -1,6 +1,6 @@
 const JWT  = require('jsonwebtoken')
-
-const  secret  = '$uperman@123'
+require('dotenv').config()
+const  secret  = process.env.JWT_SECRET
 
 function createToken(user){
     const payload = {
