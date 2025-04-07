@@ -26,6 +26,8 @@ app.set("view engine","ejs")
 app.set("views",path.resolve("./views"))
 process.env.MONGO_URL
 const port =  process.env.PORT || 8000
+console.log("Mongo URI is:", process.env.MONGO_URI); // TEMP LOG
+
 HandleMongoDB(process.env.MONGO_URI).then(()=>{
     console.log("MongoDB is Connnect!")
 }).catch((err)=>{
