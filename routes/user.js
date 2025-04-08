@@ -20,7 +20,7 @@ routerS.post('/sign',async(req,res)=>{
         email:body.email,
         password:body.password
        })
-       res.redirect('/')
+       res.redirect('/signin')
   } catch (error) {
     return res.render('signup',{error:"This Email is already in use. Please use a different Email"})
   }
